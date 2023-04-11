@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document Verification</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+		.container {
+			background-color: #fff;
+			max-width: 500px;
+			margin: auto;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+		}
+		input[type="file"] {
+			margin: 10px 0px 20px 0px;
+			padding: 10px;
+			background-color: #f2f2f2;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+		}
+		button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		button:hover {
+			background-color: #3e8e41;
+		}
+		#result {
+			margin-top: 30px;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+			display: none;
+		}
+		#result.success {
+			background-color: #e6ffe6;
+			border: 1px solid #00b300;
+			color: #008000;
+			display: block;
+		}
+		#result.fail {
+			background-color: #ffe6e6;
+			border: 1px solid #ff1a1a;
+			color: #ff1a1a;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<h1>User Verification</h1>
+	<div class="container">
+		<p>Please select a file to upload:</p>
+        <p>PAN Card</p>
+		<input type="file" id="file" accept=".pdf,.doc,.docx">
+		<button onclick="verify()">Verify</button>
+		<div id="result"></div>
+	</div>
+	<div class="container">
+		<p>Please select a file to upload:</p>
+        <p>Aadhar Card</p>
+		<input type="file" id="file" accept=".pdf,.doc,.docx">
+		<button onclick="verify()">Verify</button>
+		<div id="result"></div>
+	</div>
+    <div class="container">
+        <a href="digilockerverify.html">Verify Through DigiLocker</a>
+    </div>
+	<script>
+		function verify() {
+			var fileInput = document.getElementById("file");
+			var file = fileInput.files[0];
+			if (file) {
+				var fileSize = file.size;
+				if (fileSize <= 1048576) { // Max file size 1MB
+					var fileExtension = file.name.split('.').pop().toLowerCase();
+					if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx") {
+						var resultDiv = document.getElementById("result");
+						resultDiv.classList.remove("success");
+						resultDiv.classList.remove("fail");
+						resultDiv.innerText = "Verifying...";
+						resultDiv.style.display = "block";
+						setTimeout(function() {
+							// Simulating server response
+							var success = Math.random() < 0.5;
+							resultDiv.innerText = success ? "Verification successful." : "Verification failed. Please try again.";
+							resultDiv.classList.add(success ? "success" : "fail");
+						
+					}, 2000); // Simulating server response time of 2 seconds
+				} else {
+					alert("Invalid file format. Please select a PDF or a DOC/DOCX file.");
+				}
+			} else {
+				alert("File size exceeds 1MB. Please select a smaller file.");
+			}
+		} else {
+			alert("Please select a file to upload.");
+		}
+	}
+
+</script>

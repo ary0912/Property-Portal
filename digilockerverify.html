@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiLocker</title>
+    <style>
+
+    form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+label, input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+</style>
+</head>
+<body>
+    <form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="aadhaar">Aadhaar Number:</label>
+  <input type="text" id="aadhaar" name="aadhaar" required>
+  
+  <a href="sign_up.html"> <button type="button" id="verifyBtn">Verify</button></a>
+</form>
+<script>
+    const verifyBtn = document.getElementById('verifyBtn');
+
+verifyBtn.addEventListener('click', () => {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const aadhaar = document.getElementById('aadhaar').value;
+
+  // Call the DigiLocker API to verify the Aadhaar number
+  const url = `https://api.digitallocker.gov.in/public/oauth2/1/aadhaarstatus/${aadhaar}`;
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'Aadhaar is not linked to DigiLocker') {
+        alert('Aadhaar number not found in DigiLocker. Please link your Aadhaar to DigiLocker first.');
+      } else if (data.status === 'Verification successful') {
+        alert(`Verification successful for ${name} (${email}).`);
+      } else {
+        alert(`Verification failed for ${name} (${email}). Please try again later.`);
+      }
+    })
+    .catch(error => {
+      alert(`An error occurred while verifying ${name} (${email}): ${error.message}`);
+    });
+});
+
+</script>
+</body>
+</html>

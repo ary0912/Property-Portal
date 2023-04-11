@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Professional Navbar Example</title>
+  </head>
+  <style>
+    nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  background-color: #222;
+  color: #fff;
+  padding: 0 1rem;
+}
+
+.logo a {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin: 0 1rem;
+}
+
+.cta {
+  display: flex;
+}
+
+.payment-request, .sell-request {
+  background-color: #fff;
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.payment-request:hover, .sell-request:hover {
+  background-color: #eee;
+}
+
+  </style>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="#">Company Name</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="homepage.html">Home</a></li>
+      </ul>
+      <div class="cta">
+       <button class="payment-request">Payment Request</button>
+       <a href="sell_request.html"><button class="sell-request">Sell Request</button></a>
+      </div>
+    </nav>
+    <script>
+        // This code is optional and can be used to add additional functionality
+// to the page, such as displaying a modal when the payment or sell button
+// is clicked.
+
+const paymentButton = document.querySelector('.payment-request');
+const sellButton = document.querySelector('.sell-request');
+
+paymentButton.addEventListener('click', () => {
+  // Code to display payment modal
+});
+
+sellButton.addEventListener('click', () => {
+  // Code to display sell modal
+});
+
+    </script>
+  </body>
+</html>

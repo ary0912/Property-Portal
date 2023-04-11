@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Property Exchange</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+
+    .paper-images {
+  display: none; /* hide the images by default */
+}
+
+.verify-btn {
+  background-color: #4CAF50; /* Green background */
+  border: none;
+  color: white; /* White text */
+  padding: 10px 20px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.verify-btn:hover {
+  background-color: #3e8e41; /* Dark green background on hover */
+}
+
+    
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+  margin-bottom: 0.5em;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+button {
+  cursor: pointer;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5em 1em;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #005299;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Header styles */
+header {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+}
+
+/* Main styles */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.filters {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  margin-bottom: 1em;
+  flex-basis: 100%;
+}
+
+.filters h2 {
+  margin-bottom: 0.5em;
+}
+
+.filters form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.filters input {
+  padding: 0.5em;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  flex-basis: calc(25% - 1em);
+  margin-bottom: 0.5em;
+}
+
+.filters button {
+  flex-basis: 100%;
+}
+
+.properties {
+  flex-basis: 100%;
+}
+
+.property-card {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  margin-bottom: 1em;
+  flex-basis: calc(33.33% - 1em);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.property-card img {
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+
+.property-card h3 {
+  margin-bottom: 0.5em;
+}
+
+.property-card p {
+  margin-bottom: 0.5em;
+}
+
+.property-card button.verify-btn {
+  background-color: #2ecc71;
+}
+
+.property-card button.verify-btn:hover {
+  background-color: #27ae60;
+}
+
+/* Verification box styles */
+.verification-box {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.verification-box h2 {
+  margin-bottom: 0.5em;
+}
+
+.verification-box p {
+  margin-bottom: 0.5em;
+}
+.payment-box {
+background-color: #fff;
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+padding: 1em;
+margin-bottom: 1em;
+}
+
+.payment-box h2 {
+margin-bottom: 0.5em;
+}
+
+.payment-box form {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: center;
+}
+
+.payment-box label {
+display: block;
+margin-bottom: 0.5em;
+}
+
+.payment-box input {
+padding: 0.5em;
+border-radius: 3px;
+border: 1px solid #ccc;
+flex-basis: calc(50% - 1em);
+margin-bottom: 0.5em;
+}
+
+.payment-box button {
+flex-basis: 100%;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+.property-card {
+flex-basis: calc(50% - 1em);
+}
+}
+
+@media screen and (max-width: 576px) {
+.filters input {
+flex-basis: calc(50% - 1em);
+}
+}
+/* Navbar styles */
+
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #ddd;
+}
+
+/* Add active class to the current button (highlight it) */
+nav .active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+  </style>
+  <body>
+    <header>
+        <nav>
+    <ul>
+      <li><a href="sell-property form.html">Sell</a></li>
+    </ul>
+  </nav>
+      <h1>Property Exchange</h1>
+      
+    </header>
+    <main>
+      <div class="filters">
+        <h2>Filters</h2>
+        <form>
+          <label for="location">Location:</label>
+          <input type="text" id="location" name="location" />
+
+          <label for="size">Size:</label>
+          <input type="number" id="size" name="size" />
+
+          <label for="area">Area:</label>
+          <input type="text" id="area" name="area" />
+
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" />
+
+          <button type="submit">Filter</button>
+        </form>
+      </div>
+      
+
+    <div class="property-card">
+  <div class="property-image">
+    <img src="images/property1.jpg" alt="Property 1">
+  </div>
+   <div class="property-info">
+    <h3 class="property-title">Property 1</h3>
+    <p class="property-location">Location: City, State</p>
+    <p class="property-size">Size: 1000 sqft</p>
+    <p class="property-area">Area: Residential</p>
+    <p class="property-price">Price: $500,000</p>
+  </div>
+
+  <div id="offer-form">
+  <h2>Post an Offer</h2>
+  <form>
+    <label for="offer-title">Title:</label>
+    <input type="text" id="offer-title" name="offer-title"><br><br>
+
+    <label for="offer-description">Description:</label>
+    <textarea id="offer-description" name="offer-description"></textarea>
+
+    <label for="offer-price">Price:</label>
+    <input type="number" id="offer-price" name="offer-price"><br><br>
+
+    <button type="submit" id="offer-submit-btn">Submit</button>
+  </form>
+</div>
+
+<div id="booking-form">
+  <h2>Book a Sightseeing Slot</h2>
+  <form>
+    <label for="booking-date">Date:</label>
+    <input type="date" id="booking-date" name="booking-date"><br><br>
+
+    <label for="booking-time">Time:</label>
+    <input type="time" id="booking-time" name="booking-time"><br><br>
+
+    <label for="booking-location">Location:</label>
+    <input type="text" id="booking-location" name="booking-location"><br><br>
+
+    <button type="submit" id="booking-submit-btn">Submit</button>
+  </form>
+</div>
+
+<div id="payment-form">
+  <h2>Payment Request</h2>
+  <form>
+    <label for="payment-amount">Amount:</label>
+    <input type="number" id="payment-amount" name="payment-amount"><br><br>
+
+    <label for="payment-method">Payment Method:</label>
+    <select id="payment-method" name="payment-method">
+      <option value="credit-card">Credit Card</option>
+      <option value="paypal">PayPal</option>
+    </select><br><br>
+
+    <button type="submit" id="payment-submit-btn">Submit</button>
+  </form>
+</div>
+
+  <div class="property-info">
+    <h3 class="property-title">Property 1</h3>
+    <p class="property-location">Location: City, State</p>
+    <p class="property-size">Size: 1000 sqft</p>
+    <p class="property-area">Area: Residential</p>
+    <p class="property-price">Price: $500,000</p>
+  </div>
+
+       <button class="verify-btn">Check Papers</button>
+<div class="paper-images">
+  <img src="property-paper-1.jpg" alt="Property Paper 1">
+  <img src="property-paper-2.jpg" alt="Property Paper 2">
+  <img src="property-paper-3.jpg" alt="Property Paper 3">
+  <img src="property-paper-4.jpg" alt="Property Paper 4">
+</div>
+
+</div>
+    </main>
+
+    <div class="verification-box hidden">
+      <h2>Paper Verification</h2>
+      <p>Please upload the property papers for verification.</p>
+      <form>
+        <label for="papers">Papers:</label>
+        <input type="file" id="papers" name="papers" />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="payment-box hidden">
+      <h2>Payment</h2>
+      <p>Please enter the payment details to complete the transaction.</p>
+      <form>
+        <label for="card-number">Card Number:</label>
+        <input type="text" id="card-number" name="card-number" />
+
+        <label for="expiry-date">Expiry Date:</label>
+        <input type="text" id="expiry-date" name="expiry-date" />
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" />
+
+        <button type="submit">Pay</button>
+      </form>
+    </div>
+
+    <script>
+        const offerForm = document.getElementById('offer-form');
+const offerSubmitBtn = document.getElementById('offer-submit-btn');
+
+const verifyBtn = document.querySelector('.verify-btn');
+const paperImages = document.querySelector('.paper-images');
+
+verifyBtn.addEventListener('click', () => {
+  paperImages.style.display = 'block'; // Show the images when the button is clicked
+});
+
+
+offerSubmitBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+  const title = document.getElementById('offer-title').value;
+  const description = document.getElementById('offer-description').value;
+  const price = document.getElementById('offer-price').value;
+
+  // send data to server using fetch or XMLHttpRequest
+});
+
+const bookingForm = document.getElementById('booking-form');
+const bookingSubmitBtn = document.getElementById('booking-submit-btn');
+
+bookingSubmitBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+  const date = document.getElementById('booking-date').value;
+  const time = document.getElementById('booking-time').value;
+  const location = document.getElementById('booking-location').value;
+
+  // send data to server using fetch or XMLHttpRequest
+});
+
+const paymentForm = document.getElementById('payment-form');
+const paymentSubmitBtn = document.getElementById('payment-submit-btn');
+
+paymentSubmitBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+  const amount = document.getElementById('payment-amount').value;
+  const method = document.getElementById('payment-method').value;
+
+  // send data to server using fetch or XMLHttpRequest
+});
+
+    </script>
+  </body>
+</html>

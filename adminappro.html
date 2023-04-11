@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Application Status</title>
+  </head>
+  <style>
+    .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+  </style>
+  <body>
+    <div class="container">
+      <h1>Approval Sent to the Buyerr !</h1>
+      <p>Your approval has been sent to the buyer</p>
+      <img src="processing.gif" alt="Processing icon">
+    </div>
+    <script>
+        // This code is optional and can be used to add additional functionality
+// to the page, such as redirecting to a different page after a set time.
+
+const redirectTime = 5000; // Time in milliseconds before redirecting
+const redirectUrl = "https://example.com/thankyou"; // URL to redirect to
+
+setTimeout(() => {
+  window.location.href = redirectUrl;
+}, redirectTime);
+
+    </script>
+  </body>
+</html>
